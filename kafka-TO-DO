@@ -1,0 +1,3 @@
+Kafka-To Do
+
+when a prdocuer send a message it is always going to same partions as of now. is it always same or will it change if  lot of messages comes. 

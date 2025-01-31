@@ -1,0 +1,61 @@
+Kafka Commands:
+run this  2 command in command prompt from  C:\kafka\kafka_2.13-3.9.0 path 
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+next create topic 
+from this path in C:\kafka\kafka_2.13-3.9.0\bin\windows in cmd 
+
+kafka-topics.bat --create --bootstrap-server localhost:9092 --topic test1 --partitions 3
+
+response will be Created topic test1.
+
+send message from  producer side to topic 
+
+PRODUCER:
+kafka-console-producer.bat  --broker-list localhost:9092 --topic test1
+
+consumer reads message from topic by using below command
+CONSUMER:
+kafka-console-consumer.bat --topic test1 --bootstrap-server localhost:9092  --group Analytics 
+Consumer Best command:
+kafka-console-consumer --topic WholeFoods_Orders --bootstrap-server localhost:9092 --group Analytics --from-beginning --property enable.auto.commit=true
+
+
+
+we don't need from beginning --from-beginning
+
+title Analytics_consumer1
+title Analytics_consumer2
+
+title Analytics_consumer1
+
+
+
+commands by youtube
+
+Required Commands:
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partition 1 --topic test
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic test
+-------------------------------------------------------------------------------------------------------
+Sample Data:
+
+{"Name: "John", "Age":"31", "Gender":"Male"}
+{"Name: "Emma", "Age":"27", "Gender":"Female"}
+{"Name: "Ronald", "Age":"17", "Gender":"Male"}
+---------------------------------------------------------------------------------------------------------
+
+kafka-console-consumer.bat --topic test --bootstrap-server localhost:9092 --from-beginning
+
+
+.\bin\windows\zookeeper-server-stop.bat .\config\zookeeper.properties
+
+.\bin\windows\kafka-server-stop.bat .\config\server.properties
+

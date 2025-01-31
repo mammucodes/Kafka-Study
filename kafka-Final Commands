@@ -1,0 +1,62 @@
+Kafka Commands
+To kafka to work you need to first run both zookeeper and kafka servers
+
+To start Zookeeper Server:
+Open commnad  promput and change directory 
+
+cd C:\kafka\kafka_2.13-3.9.0
+cd <<Kadka_dir which has bin folder>>
+or open cmnd  directly  from given path location  C:\kafka\kafka_2.13-3.9.0
+
+and run this command:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+TO start Kafka -Server
+open command prompt : and change directory 
+cd C:\kafka\kafka_2.13-3.9.0
+and run this command  
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+TO create topic with partitions count 
+
+kafka-topics.bat --create --bootstrap-server localhost:9092 --topic WholeFoods_Order --partitions 3
+
+To create producer:
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic WholeFoods_Orders
+To create one more producuer run the same command again 
+kafka-console-producer.bat --broker-list localhost:9092 --topic WholeFoods_Orders
+
+To create Consumer Group
+1.Consmer_1_AnalyticsGroup
+kafka-console-consumer --topic WholeFoods_Orders --bootstrap-server localhost:9092 --group Analytics --from-beginning --property print.partition=true
+ 
+To create 2 more consumers for this group run this command again in new command window
+from path location where console-conusmer.bat is located
+
+To  Run messages only from same partition we can key key and value command as below . it will make sure  same key runs in same partitions.
+you have to  run this command in producer command window
+Command is:
+either open command from this location 
+Path location is C:\kafka\kafka_2.13-3.9.0\bin\windows>
+or just open commnad prompt directly and change directory to required location
+
+cd C:\kafka\kafka_2.13-3.9.0\bin\windows
+
+kafka-console-producer --topic WholeFoods_Orders --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
+ 
+
+ Example  how to pass key and value is below
+ >mamatha_1:mamatha test1 value   goes to Partition 2
+>mamatha_1:buy Milk                         2
+>mamatha_1:buy bread                        2
+>mamatha_2:buy bananas                      1
+>Mamatha_2:buy blueberries                  1
+>mamatha_4:buy vodaka                       0
+>mamatha_3:buy beer                         1
+>mamatha_4:buy lemon                        0
+>mamatha_3:buy glass                        1
+
+
+
